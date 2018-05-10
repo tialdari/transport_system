@@ -6,32 +6,42 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.HashMap;
+import java.util.HashSet;
 
 
 public class Parser {
 	
 	
 	private File file;
-	private ArrayList<HashMap> allCities;
-	private HashMap<String, String> connections;
-	private HashMap<String, Integer> distances;
+	private HashSet<HashMap> allCities;
 	
 	public Parser() {
 		file = new File("zad4_data.txt");
-		allCities = new ArrayList<HashMap>();
-		connections = new HashMap<String, String>(12);
-		distances = new HashMap<String, Integer>(12);
+		allCities = new HashSet<HashMap>();
+		
 	}
 	
 	public Parser(String fileName) {
 		file = new File(fileName);
-		allCities = new ArrayList<HashMap>();
-		connections = new HashMap<String, String>(12);
-		distances = new HashMap<String, Integer>(12);
+		allCities = new HashSet<HashMap>();
+	
 	}
 
+	
+	
+	
+	public HashSet<HashMap> getAllCities() {
+		return allCities;
+	}
+
+	public void setAllCities(HashSet<HashMap> allCities) {
+		this.allCities = allCities;
+	}
 
 	public void  read() {
+		
+		HashMap<String, HashMap<String, Integer>> connections;
+		HashMap<String, Integer> distances;
 		
 		try{
 			
@@ -59,22 +69,50 @@ public class Parser {
 	                		
 	                		if (!line.contains("-")) {
 		                    
-	                			System.out.println("blank line");
 	                			line = sc.nextLine();
 	                			break;
 	                		}
-	                	
-	                	                		
-		                		info = line.split("-|\\(|\\)");
-		                    System.out.print(info[0] + ".");
+	                		
+		                		info = line.split(" - | \\(|\\)");
+		                    System.out.print(info[0]);
 		                    
-	                			info = line.split("-|\\(|\\)");
-		                    System.out.print(info[1] + ".");
+	                			info = line.split(" - | \\(|\\)");
+		                    System.out.print(info[1]);
 		                    
-		                    info = line.split("-|\\(|\\)");
-		                    System.out.println(info[2] + ".loop ended");
-
+		                    
+		                    info = line.split(" - | \\(|\\)");
+		                    System.out.println(info[2]);
+		                    
+		                    connections = new HashMap<String, HashMap<String, Integer>>();
+		                    distances = new HashMap<String, Integer>();
+		                    
+		                    distances.put(info[1], Integer.parseInt(info[2]));
+		                    connections.put(info[0], distances);
+		                    
+		                    allCities.add(connections);
+		                    
+		                    
 		                    line = sc.nextLine();
+		                    
+		                    if(!sc.hasNextLine()) {
+		                    		info = line.split(" - | \\(|\\)");
+			                    System.out.print(info[0]);
+			                    
+		                			info = line.split(" - | \\(|\\)");
+			                    System.out.print(info[1]);
+			                    
+			                    
+			                    info = line.split(" - | \\(|\\)");
+			                    System.out.println(info[2]);
+			                    
+			                    connections = new HashMap<String, HashMap<String, Integer>>();
+			                    distances = new HashMap<String, Integer>();
+			                    
+			                    distances.put(info[1], Integer.parseInt(info[2]));
+			                    connections.put(info[0], distances);
+			                    
+			                    allCities.add(connections);
+		                    }
 
 	                }
                 }
