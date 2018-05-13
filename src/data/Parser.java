@@ -13,116 +13,110 @@ public class Parser {
 	
 	
 	private File file;
-	private HashSet<HashMap> allCities;
+	private HashMap<String, HashMap<String, Integer>> allCities;
+	private Scanner sc; 
+    private String line;
+    private String [] info;
+    
 	
 	public Parser() {
 		file = new File("zad4_data.txt");
-		allCities = new HashSet<HashMap>();
+		allCities = new HashMap<String, HashMap<String, Integer>>();
+		try{
+			sc = new Scanner(file);
+		}catch(FileNotFoundException ex) {
+			System.out.println("File not found");
+		}
+          
+        line = sc.nextLine(); 
+        info = new String[3];
+        
+		
 		
 	}
 	
 	public Parser(String fileName) {
 		file = new File(fileName);
-		allCities = new HashSet<HashMap>();
-	
+		allCities = new HashMap<String, HashMap<String, Integer>>();
+		try{
+			sc = new Scanner(file);
+		}catch(FileNotFoundException ex) {
+			System.out.println("File not found");
+		}
+                    
+        line = sc.nextLine(); 
+        info = new String[3];
+        
 	}
 
 	
-	
-	
-	public HashSet<HashMap> getAllCities() {
+	public HashMap<String, HashMap<String, Integer>> getAllCities() {
 		return allCities;
 	}
 
-	public void setAllCities(HashSet<HashMap> allCities) {
+	public void setAllCities(HashMap<String, HashMap<String, Integer>> allCities) {
 		this.allCities = allCities;
 	}
 
 	public void  read() {
 		
-		HashMap<String, HashMap<String, Integer>> connections;
-		HashMap<String, Integer> distances;
-		
-		try{
-			
-            Scanner sc = new Scanner(file);
-            
-            String line = sc.nextLine();
-            String cityName;
-            int distance;
-            String [] info = new String[100];
-            int [] nums;
-           
-
             while(sc.hasNext()) {
 
 	                if (line.matches(".*H.*")) {
 	                	
 	                    System.out.println(line);
 	                    line = sc.nextLine();
-	
 	                }
 
-	                
 	                while ((!line.matches(".*HZ.*") || !line.matches(".*HW.*") ||
 	                		   !line.matches(".*HC.*")) && sc.hasNext()) {
 	                		
 	                		if (!line.contains("-")) {
-		                    
-	                			line = sc.nextLine();
+		                    line = sc.nextLine();
 	                			break;
 	                		}
 	                		
-		                		info = line.split(" - | \\(|\\)");
-		                    System.out.print(info[0]);
-		                    
-	                			info = line.split(" - | \\(|\\)");
-		                    System.out.print(info[1]);
-		                    
-		                    
-		                    info = line.split(" - | \\(|\\)");
-		                    System.out.println(info[2]);
-		                    
-		                    connections = new HashMap<String, HashMap<String, Integer>>();
-		                    distances = new HashMap<String, Integer>();
-		                    
-		                    distances.put(info[1], Integer.parseInt(info[2]));
-		                    connections.put(info[0], distances);
-		                    
-		                    allCities.add(connections);
-		                    
-		                    
-		                    line = sc.nextLine();
-		                    
-		                    if(!sc.hasNextLine()) {
-		                    		info = line.split(" - | \\(|\\)");
-			                    System.out.print(info[0]);
-			                    
-		                			info = line.split(" - | \\(|\\)");
-			                    System.out.print(info[1]);
-			                    
-			                    
-			                    info = line.split(" - | \\(|\\)");
-			                    System.out.println(info[2]);
-			                    
-			                    connections = new HashMap<String, HashMap<String, Integer>>();
-			                    distances = new HashMap<String, Integer>();
-			                    
-			                    distances.put(info[1], Integer.parseInt(info[2]));
-			                    connections.put(info[0], distances);
-			                    
-			                    allCities.add(connections);
-		                    }
+		                	addConnection();
+			 			line = sc.nextLine();	
 
+		                 if(!sc.hasNextLine()) {	
+		     				addConnection();
+		                 }
+ 	 		
 	                }
                 }
             
             sc.close(); 
             
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-
+	}
+	
+	
+	
+	public void addConnection() {
+		
+		
+				info = line.split(" - | \\(|\\)");
+				info = line.split(" - | \\(|\\)");
+				info = line.split(" - | \\(|\\)");
+		   
+				if(allCities.containsKey(info[0])) {
+		    			allCities.get(info[0]).put(info[1], Integer.parseInt(info[2]));
+				}else {
+		    			allCities.put(info[0], new HashMap<String, Integer>());
+		    			allCities.get(info[0]).put(info[1], Integer.parseInt(info[2]));
+				}
+		    
+				System.out.println("Adding " + info[1] + " to " + info[0]);
+		
+		    
+				if(allCities.containsKey(info[1])) {
+					allCities.get(info[1]).put(info[0], Integer.parseInt(info[2]));
+				}else {
+		    			allCities.put(info[1], new HashMap<String, Integer>());
+		    			allCities.get(info[1]).put(info[0], Integer.parseInt(info[2]));
+				}
+		    
+				System.out.println("Adding " + info[0] + " to " + info[1]);
 		
 	}
     
