@@ -5,8 +5,11 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Map.Entry;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Map;
 
 
 public class Parser {
@@ -17,7 +20,6 @@ public class Parser {
 	private Scanner sc; 
     private String line;
     private String [] info;
-    
 	
 	public Parser() {
 		file = new File("zad4_data.txt");
@@ -30,9 +32,9 @@ public class Parser {
           
         line = sc.nextLine(); 
         info = new String[3];
+      
         
-		
-		
+        
 	}
 	
 	public Parser(String fileName) {
@@ -46,7 +48,7 @@ public class Parser {
                     
         line = sc.nextLine(); 
         info = new String[3];
-        
+       
 	}
 
 	
@@ -82,7 +84,7 @@ public class Parser {
 		                 if(!sc.hasNextLine()) {	
 		     				addConnection();
 		                 }
- 	 		
+		                 
 	                }
                 }
             
@@ -106,19 +108,19 @@ public class Parser {
 		    			allCities.get(info[0]).put(info[1], Integer.parseInt(info[2]));
 				}
 		    
-				System.out.println("Adding " + info[1] + " to " + info[0]);
 		
 		    
 				if(allCities.containsKey(info[1])) {
 					allCities.get(info[1]).put(info[0], Integer.parseInt(info[2]));
 				}else {
+					
 		    			allCities.put(info[1], new HashMap<String, Integer>());
 		    			allCities.get(info[1]).put(info[0], Integer.parseInt(info[2]));
 				}
 		    
-				System.out.println("Adding " + info[0] + " to " + info[1]);
 		
 	}
-    
+	
+	
 }
 

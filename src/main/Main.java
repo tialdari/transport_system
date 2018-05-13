@@ -1,9 +1,10 @@
 package main;
 
 import data.Parser;
-import java.util.regex.*;
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map.Entry;
+import java.util.*;
 
 public class Main {
 	
@@ -15,5 +16,16 @@ public class Main {
 		//Create an iterator over a hashmap to view all the entry sets 
 		//Code in progress
 		
+		Iterator<Entry<String, HashMap<String, Integer>>> iter = parser.getAllCities().entrySet().iterator();
+		Map.Entry<String, HashMap<String, Integer>> cityConnections;
+		
+		while(iter.hasNext()) {
+	        cityConnections = (Map.Entry<String, HashMap<String, Integer>>)iter.next();
+
+			System.out.println("Connections of " + cityConnections.getKey() + ": " + cityConnections.getValue());
+		}
+		
+	
+
 	}
 }
