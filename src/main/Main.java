@@ -1,10 +1,8 @@
 package main;
 
 import data.Parser;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map.Entry;
-import java.util.*;
+import data.IO;
+
 
 public class Main {
 	
@@ -13,9 +11,10 @@ public class Main {
 		Parser parser = new Parser("zad4_data.txt");
 		parser.read();
 		
-		//Create an iterator over a hashmap to view all the entry sets 
-		//Code in progress
+		IO io = new IO();
+		System.out.println(io.input());
 		
+		/*
 		Iterator<Entry<String, HashMap<String, Integer>>> iter = parser.getAllCities().entrySet().iterator();
 		Map.Entry<String, HashMap<String, Integer>> cityConnections;
 		
@@ -24,6 +23,7 @@ public class Main {
 
 			System.out.println("Connections of " + cityConnections.getKey() + ": " + cityConnections.getValue());
 		}
+		*/
 		
 	
 
