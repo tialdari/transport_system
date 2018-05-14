@@ -61,7 +61,6 @@ public class Parser {
 
 	                if (line.matches(".*H.*")) {
 	                	
-	                    System.out.println(line);
 	                    line = sc.nextLine();
 	                }
 

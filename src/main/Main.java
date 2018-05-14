@@ -2,6 +2,7 @@ package main;
 
 import data.Parser;
 import data.IO;
+import route_searching.Connections;
 
 
 public class Main {
@@ -13,6 +14,10 @@ public class Main {
 		
 		IO io = new IO();
 		System.out.println(io.input());
+		
+		Connections connectionsBrowser = new Connections();
+		connectionsBrowser.findRoutes("Bree", "Angmar", parser.getAllCities());
+		
 		
 		/*
 		Iterator<Entry<String, HashMap<String, Integer>>> iter = parser.getAllCities().entrySet().iterator();

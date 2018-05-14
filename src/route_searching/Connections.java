@@ -1,18 +1,21 @@
 package route_searching;
 
+import data.*;
+import java.util.*;
+import java.util.Map.Entry;
+
 public class Connections {
 	
-	private String start;
-	private String destination;
 	
-	public Connections() {
-		start = "Bree";
-		destination = "Trehaug";
-	}
-	
-	public Connections(String start, String destination) {
-		this.start = start;
-		this.destination = destination;
+	public void findRoutes(String start, String destination, HashMap<String, HashMap<String, Integer>> cities) {
+			
+		
+		cities.get( "Bree" ).get( "nestedkeyname" );
+
+		if(cities.get(start).containsValue({Angmar=360})) {
+			System.out.println("Direct connection, distance: " + cities.get(start).get(destination));
+		}
+		
 	}
 }
 
