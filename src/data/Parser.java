@@ -107,7 +107,7 @@ public class Parser {
 				if(allCities.containsKey(info[1])) {
 					allCities.get(info[1]).put(info[0], Integer.parseInt(info[2]));
 				}else {
-					
+
 		    			allCities.put(info[1], new HashMap<String, Integer>());
 		    			allCities.get(info[1]).put(info[0], Integer.parseInt(info[2]));
 				}

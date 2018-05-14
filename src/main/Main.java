@@ -1,8 +1,13 @@
 package main;
 
 import data.Parser;
+
+import java.util.Map.Entry;
+
 import data.IO;
 import route_searching.Connections;
+import java.util.*;
+
 
 
 public class Main {
@@ -11,13 +16,13 @@ public class Main {
 		
 		Parser parser = new Parser("zad4_data.txt");
 		parser.read();
+
 		
-		IO io = new IO();
-		System.out.println(io.input());
+		//IO io = new IO();
+	//	System.out.println(io.input());
 		
 		Connections connectionsBrowser = new Connections();
 		connectionsBrowser.findRoutes("Bree", "Angmar", parser.getAllCities());
-		
 		
 		/*
 		Iterator<Entry<String, HashMap<String, Integer>>> iter = parser.getAllCities().entrySet().iterator();
@@ -27,9 +32,9 @@ public class Main {
 	        cityConnections = (Map.Entry<String, HashMap<String, Integer>>)iter.next();
 
 			System.out.println("Connections of " + cityConnections.getKey() + ": " + cityConnections.getValue());
+
 		}
 		*/
-		
 	
 
 	}
