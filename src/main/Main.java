@@ -22,9 +22,9 @@ public class Main {
 	//	System.out.println(io.input());
 		
 		Connections connectionsBrowser = new Connections();
-		connectionsBrowser.findRoutes("Bree", "Angmar", parser.getAllCities());
+		connectionsBrowser.findRoutes("Gondolin", "Roke", parser.getAllCities());
 		
-		/*
+		
 		Iterator<Entry<String, HashMap<String, Integer>>> iter = parser.getAllCities().entrySet().iterator();
 		Map.Entry<String, HashMap<String, Integer>> cityConnections;
 		
@@ -34,7 +34,7 @@ public class Main {
 			System.out.println("Connections of " + cityConnections.getKey() + ": " + cityConnections.getValue());
 
 		}
-		*/
+		
 	
 
 	}
