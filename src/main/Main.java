@@ -22,7 +22,11 @@ public class Main {
 	//	System.out.println(io.input());
 		
 		Connections connectionsBrowser = new Connections();
-		System.out.println(connectionsBrowser.findRoutes("Gondolin", "Rivendell", parser.getAllCities()));
+		//System.out.println(connectionsBrowser.findRoutes("Lusitania", "Angmar", parser.getAllCities()));
+		
+		for(ArrayList<String> routes : connectionsBrowser.findRoutes("Lusitania", "Angmar", parser.getAllCities())) {
+			System.out.println(routes);
+		}
 
 		
 		Iterator<Entry<String, HashMap<String, Integer>>> iter = parser.getAllCities().entrySet().iterator();

@@ -30,8 +30,9 @@ public class Connections {
 				if(currentCity.equals(destination)) {
 					if(cities.get(start).containsKey(destination)) {
 						visitedCities.add(destination);
-						possibleRoutes.add(visitedCities);
-						System.out.println(visitedCities);
+						
+						possibleRoutes.add(new ArrayList<String>(visitedCities));
+						//System.out.println(visitedCities);
 					}
 					break;
 				}	
@@ -40,8 +41,8 @@ public class Connections {
 				
 				if(cities.get(currentCity).containsKey(destination) ) {
 					visitedCities.add(destination);
-					possibleRoutes.add(visitedCities);
-					System.out.println(visitedCities);
+					possibleRoutes.add(new ArrayList<String>(visitedCities));
+				//	System.out.println(visitedCities);
 
 					visitedCities.remove(visitedCities.size() - 1);
 				}
@@ -60,8 +61,8 @@ public class Connections {
 							}
 							visitedCities.add(currentCity);
 							visitedCities.add(destination);
-							possibleRoutes.add(visitedCities);
-							System.out.println(visitedCities);
+							possibleRoutes.add(new ArrayList<String>(visitedCities));
+							//System.out.println(visitedCities);
 							visitedCities.remove(visitedCities.size() - 1);
 							visitedCities.remove(visitedCities.size() - 1);						
 						}	
