@@ -24,7 +24,7 @@ public class Main {
 		Connections connectionsBrowser = new Connections();
 		//System.out.println(connectionsBrowser.findRoutes("Lusitania", "Angmar", parser.getAllCities()));
 		
-		for(ArrayList<String> routes : connectionsBrowser.findRoutes("Lusitania", "Angmar", parser.getAllCities())) {
+		for(ArrayList<String> routes : connectionsBrowser.findRoutes("Selidor", "Trondheim", parser.getAllCities())) {
 			System.out.println(routes);
 		}
 
