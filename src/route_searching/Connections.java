@@ -12,30 +12,63 @@ public class Connections {
 	public int findRoutes(String start, String destination, HashMap<String, HashMap<String, Integer>> cities) {
 		
 
-		  Iterator<Entry<String, HashMap<String, Integer>>> iterator = cities.entrySet().iterator(); 
-		  Map.Entry<String, HashMap<String, Integer>> cityConnections;
+		String currentCity;
+		
+		Iterator<Entry<String, Integer>> iterator = cities.get(start).entrySet().iterator(); 
+		Map.Entry<String, Integer> cityConnections;
 		  
-		  while(iterator.hasNext()) {
-				cityConnections = (Map.Entry<String, HashMap<String, Integer>>)iterator.next();
-				System.out.println("\n\ncity: " +  cityConnections.getKey() + "\nsubcities: ");
-				
+		while(iterator.hasNext()) {
+			
+			
+				ArrayList<String> visitedCities = new ArrayList<String>();
+				visitedCities.add(start);
+
+
+				cityConnections = (Map.Entry<String,Integer>)iterator.next();
+				//System.out.println("\n\ncity: " +  cityConnections.getKey() + "\nsubcities: ");
+				currentCity = cityConnections.getKey();
+				/*
+				if(visitedCities.size() == 1 || (visitedCities.size() == 2 && cities.get(currentCity).containsKey(destination))) {
+					visitedCities.add(currentCity);
+					if(cities.get(currentCity).containsKey(destination)) {
+						System.out.println(visitedCities + " " + destination);
+						visitedCities.remove(visitedCities.size() - 1);
+					}
+				}
+				*/
+				if(currentCity.equals(destination)) {
+					if(cities.get(start).containsKey(destination)) {
+						System.out.println(start+ " - " + destination + ": " + cities.get(start).get(destination).intValue());
+					}
+					continue;
+				}	
+				 visitedCities.add(currentCity);
+
 				  Iterator<Entry<String, Integer>> innerIterator = cities.get(cityConnections.getKey()).entrySet().iterator(); 
 				  Map.Entry<String, Integer> cityConnections2;
 				  
 				  while(innerIterator.hasNext()) {
 						cityConnections2 = (Map.Entry<String, Integer>)innerIterator.next();
-				        System.out.print("\n..." + cityConnections2.getKey() + "..., ");
-				        
-				        Iterator<Entry<String, Integer>> innerIterator2 = cities.get(cityConnections2.getKey()).entrySet().iterator(); 
-						  Map.Entry<String, Integer> cityConnections3;
-						  
-						System.out.println("\nsubcities of the subcity: ");
-
-						  while(innerIterator2.hasNext()) {
-								cityConnections3 = (Map.Entry<String, Integer>)innerIterator2.next();
-						        System.out.print(cityConnections3.getKey() + ", ");
-						  }
+				      //  System.out.print("\n..." + cityConnections2.getKey() + "..., ");
+						currentCity = cityConnections2.getKey();
+						
+						
+					
+						if(cities.get(currentCity).containsKey(destination)) {
+							if(visitedCities.contains(currentCity)) {
+								continue;
+							}
+							visitedCities.add(currentCity);
+							System.out.println(visitedCities + " " + destination);
+							visitedCities.remove(visitedCities.size() - 1);
+						
+						}	
 				  }
+				  
+					//visitedCities.remove(visitedCities.size() - 1);
+
+				  
+				 		
 		  }
 		
 		return 0;
