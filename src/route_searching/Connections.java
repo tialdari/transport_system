@@ -17,7 +17,15 @@ public class Connections {
 		Iterator<Entry<String, Integer>> iterator = cities.get(start).entrySet().iterator(); 
 		Map.Entry<String, Integer> cityConnections;
 		
-		ArrayList<String> visitedCities;
+		ArrayList<String> visitedCities = new ArrayList<String>();
+
+		
+		if(cities.get(start).containsKey(destination)) {
+			visitedCities.add(start);
+			visitedCities.add(destination);
+			possibleRoutes.add(new ArrayList<String>(visitedCities));
+			return possibleRoutes;
+		}
 		  
 		while(iterator.hasNext()) {
 			
@@ -26,16 +34,7 @@ public class Connections {
 
 				cityConnections = (Map.Entry<String,Integer>)iterator.next();
 				currentCity = cityConnections.getKey();
-				
-				if(currentCity.equals(destination)) {
-					if(cities.get(start).containsKey(destination)) {
-						visitedCities.add(destination);
-						
-						possibleRoutes.add(new ArrayList<String>(visitedCities));
-						//System.out.println(visitedCities);
-					}
-					break;
-				}	
+			
 				 visitedCities.add(currentCity);
 
 				
