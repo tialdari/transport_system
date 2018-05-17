@@ -44,6 +44,13 @@ public class Connections {
 				}	
 				 visitedCities.add(currentCity);
 
+				
+				if(cities.get(currentCity).containsKey(destination) ) {
+					System.out.println(visitedCities + " " + destination);
+					//continue;
+				}
+				
+
 				  Iterator<Entry<String, Integer>> innerIterator = cities.get(cityConnections.getKey()).entrySet().iterator(); 
 				  Map.Entry<String, Integer> cityConnections2;
 				  
@@ -52,8 +59,6 @@ public class Connections {
 				      //  System.out.print("\n..." + cityConnections2.getKey() + "..., ");
 						currentCity = cityConnections2.getKey();
 						
-						
-					
 						if(cities.get(currentCity).containsKey(destination)) {
 							if(visitedCities.contains(currentCity)) {
 								continue;
