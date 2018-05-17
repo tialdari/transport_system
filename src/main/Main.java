@@ -22,18 +22,21 @@ public class Main {
 	//	System.out.println(io.input());
 		
 		Connections connectionsBrowser = new Connections();
-		connectionsBrowser.findRoutes("Gondolin", "Roke", parser.getAllCities());
+		connectionsBrowser.findRoutes("Angmar", "Gont", parser.getAllCities());
+
 		
 		
 		Iterator<Entry<String, HashMap<String, Integer>>> iter = parser.getAllCities().entrySet().iterator();
 		Map.Entry<String, HashMap<String, Integer>> cityConnections;
 		
+        System.out.println("");
+
 		while(iter.hasNext()) {
 	        cityConnections = (Map.Entry<String, HashMap<String, Integer>>)iter.next();
-
 			System.out.println("Connections of " + cityConnections.getKey() + ": " + cityConnections.getValue());
 
 		}
+		
 		
 	
 
