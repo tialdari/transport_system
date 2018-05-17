@@ -7,47 +7,43 @@ import java.util.Map.Entry;
 
 public class Connections {
 	
-	private ArrayList<String> route = new ArrayList<String>();
+	private ArrayList<ArrayList<String>> possibleRoutes = new ArrayList<ArrayList<String>>();
 	
-	public int findRoutes(String start, String destination, HashMap<String, HashMap<String, Integer>> cities) {
+	public ArrayList<ArrayList<String>> findRoutes(String start, String destination, HashMap<String, HashMap<String, Integer>> cities) {
 		
 
 		String currentCity;
 		
 		Iterator<Entry<String, Integer>> iterator = cities.get(start).entrySet().iterator(); 
 		Map.Entry<String, Integer> cityConnections;
+		
+		ArrayList<String> visitedCities;
 		  
 		while(iterator.hasNext()) {
 			
-			
-				ArrayList<String> visitedCities = new ArrayList<String>();
+				visitedCities = new ArrayList<String>();
 				visitedCities.add(start);
 
-
 				cityConnections = (Map.Entry<String,Integer>)iterator.next();
-				//System.out.println("\n\ncity: " +  cityConnections.getKey() + "\nsubcities: ");
 				currentCity = cityConnections.getKey();
-				/*
-				if(visitedCities.size() == 1 || (visitedCities.size() == 2 && cities.get(currentCity).containsKey(destination))) {
-					visitedCities.add(currentCity);
-					if(cities.get(currentCity).containsKey(destination)) {
-						System.out.println(visitedCities + " " + destination);
-						visitedCities.remove(visitedCities.size() - 1);
-					}
-				}
-				*/
+				
 				if(currentCity.equals(destination)) {
 					if(cities.get(start).containsKey(destination)) {
-						System.out.println(start+ " - " + destination + ": " + cities.get(start).get(destination).intValue());
+						visitedCities.add(destination);
+						possibleRoutes.add(visitedCities);
+						System.out.println(visitedCities);
 					}
-					continue;
+					break;
 				}	
 				 visitedCities.add(currentCity);
 
 				
 				if(cities.get(currentCity).containsKey(destination) ) {
-					System.out.println(visitedCities + " " + destination);
-					//continue;
+					visitedCities.add(destination);
+					possibleRoutes.add(visitedCities);
+					System.out.println(visitedCities);
+
+					visitedCities.remove(visitedCities.size() - 1);
 				}
 				
 
@@ -56,7 +52,6 @@ public class Connections {
 				  
 				  while(innerIterator.hasNext()) {
 						cityConnections2 = (Map.Entry<String, Integer>)innerIterator.next();
-				      //  System.out.print("\n..." + cityConnections2.getKey() + "..., ");
 						currentCity = cityConnections2.getKey();
 						
 						if(cities.get(currentCity).containsKey(destination)) {
@@ -64,18 +59,16 @@ public class Connections {
 								continue;
 							}
 							visitedCities.add(currentCity);
-							System.out.println(visitedCities + " " + destination);
+							visitedCities.add(destination);
+							possibleRoutes.add(visitedCities);
+							System.out.println(visitedCities);
 							visitedCities.remove(visitedCities.size() - 1);
-						
+							visitedCities.remove(visitedCities.size() - 1);						
 						}	
 				  }
 				  
-					//visitedCities.remove(visitedCities.size() - 1);
-
-				  
-				 		
 		  }
 		
-		return 0;
+		return possibleRoutes;
 	}
-}	
+}
