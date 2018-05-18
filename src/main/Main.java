@@ -29,12 +29,22 @@ public class Main {
 			parser.print();
 			System.out.println("\n\nStart point(type in the city): ");
 			String startCity = io.input();
-			
-			while(!cities.containsKey(startCity)){
-				System.out.println("No such city, please choose a city from the list above");
-				System.out.println("\nStart point(type in the city): ");
-				startCity = io.input();
+			char [] characters = startCity.toCharArray();
+			characters[0] = Character.toUpperCase(characters[0]);
+
+			startCity = "";
+			for(int i = 0; i < characters.length; i ++ ) {
+				
+				startCity += characters[i];
 			}
+			
+			
+			//s1.equalsIgnoreCase(s2)
+				while(!cities.containsKey(startCity)){
+					System.out.println("No such city, please choose a city from the list above");
+					System.out.println("\nStart point(type in the city): ");
+					startCity = io.input();
+				}
 			
 			System.out.println("");
 			
@@ -54,6 +64,15 @@ public class Main {
 			  
 			System.out.println("\n\nDestination(type in the city): ");
 			String destinationCity = io.input();
+			
+			 characters = startCity.toCharArray();
+			characters[0] = Character.toUpperCase(characters[0]);
+
+			destinationCity = "";
+			for(int i = 0; i < characters.length; i ++ ) {
+				
+				destinationCity += characters[i];
+			}
 	
 			while(!cities.containsKey(destinationCity)){
 				System.out.println("No such city, please choose a city from the list above");
