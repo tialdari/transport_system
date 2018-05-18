@@ -4,7 +4,10 @@ package data;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+import java.util.Map.Entry;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 
 public class Parser {
@@ -113,6 +116,26 @@ public class Parser {
 				}
 		    
 		
+	}
+	
+	public void print() {
+
+		Iterator<Entry<String, HashMap<String, Integer>>> iter = getAllCities().entrySet().iterator();
+		Map.Entry<String, HashMap<String, Integer>> cityConnections;
+		
+        System.out.println("");
+
+        int number = 0;
+        
+		while(iter.hasNext()) {
+			number++;
+			if(number == 7) {
+				System.out.println("");
+			}
+	        cityConnections = (Map.Entry<String, HashMap<String, Integer>>)iter.next();
+			System.out.print(cityConnections.getKey() + "  ");
+
+		}
 	}
 	
 	

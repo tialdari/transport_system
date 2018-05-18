@@ -7,11 +7,15 @@ import java.util.Map.Entry;
 
 public class Connections {
 	
-	private ArrayList<ArrayList<String>> possibleRoutes = new ArrayList<ArrayList<String>>();
 	private ArrayList<String> visitedCities;
+	private HashMap<ArrayList<String>, Integer> possibleRoutes;
+	
+	public Connections() {
+		possibleRoutes = new HashMap<ArrayList<String>, Integer>();
+	}
 	
 	
-	public ArrayList<ArrayList<String>> findRoutes(String start, String destination, HashMap<String, HashMap<String, Integer>> cities) {
+	public HashMap<ArrayList<String>, Integer> findRoutes(String start, String destination, HashMap<String, HashMap<String, Integer>> cities) {
 		
 		int distance = 0;
 		String currentCity;
@@ -19,15 +23,14 @@ public class Connections {
 		Iterator<Entry<String, Integer>> iterator = cities.get(start).entrySet().iterator(); 
 		Map.Entry<String, Integer> cityConnections;
 		
-	 visitedCities = new ArrayList<String>();
+		visitedCities = new ArrayList<String>();
 
 		
 		if(cities.get(start).containsKey(destination)) {
 			distance += 	cities.get(start).get(destination).intValue();
 			visitedCities.add(start);
 			visitedCities.add(destination);
-			possibleRoutes.add(new ArrayList<String>(visitedCities));
-			System.out.println(visitedCities + "   distance: " + distance);
+			possibleRoutes.put(new ArrayList<String>(visitedCities), distance);
 			return possibleRoutes;
 		}
 		  
@@ -50,8 +53,7 @@ public class Connections {
 				if(cities.get(currentCity).containsKey(destination) ) {
 					distance += 	cities.get(currentCity).get(destination).intValue();
 					visitedCities.add(destination);
-					possibleRoutes.add(new ArrayList<String>(visitedCities));
-					System.out.println(visitedCities + "distance: " + distance);
+					possibleRoutes.put(new ArrayList<String>(visitedCities), distance);
 					distance -= 	cities.get(currentCity).get(destination).intValue();
 					removeCity();					
 				}
@@ -72,11 +74,7 @@ public class Connections {
 							visitedCities.add(destination);
 							distance += cityConnections2.getValue();
 							distance += 	cities.get(currentCity).get(destination).intValue();
-
-							System.out.println(visitedCities + "distance: " + distance);
-
-							possibleRoutes.add(new ArrayList<String>(visitedCities));
-							//System.out.println(visitedCities);
+							possibleRoutes.put(new ArrayList<String>(visitedCities), distance);
 							distance -= cityConnections2.getValue();
 							distance -= 	cities.get(currentCity).get(destination).intValue();
 							
@@ -101,4 +99,13 @@ public class Connections {
 		
 	}
 	*/
+	
+		public static class EntryComparator implements Comparator<Map.Entry<ArrayList<String>, Integer>>{
+			
+			public int compare(Map.Entry<ArrayList<String>, Integer> left,
+						Map.Entry<ArrayList<String>, Integer> right) {     
+				// Right then left to get a descending order
+				return Integer.compare(right.getKey().size(), left.getKey().size());
+			}
+		}
 }
