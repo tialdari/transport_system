@@ -31,6 +31,8 @@ public class Connections {
 		  
 		while(iterator.hasNext()) {
 			
+				distance = 0;
+			
 				visitedCities = new ArrayList<String>();
 				visitedCities.add(start);
 
@@ -39,7 +41,6 @@ public class Connections {
 			
 				 visitedCities.add(currentCity);
 				distance += cityConnections.getValue();
-				System.out.print(" + "  + cityConnections.getValue());
 
 
 
@@ -60,7 +61,6 @@ public class Connections {
 				  while(innerIterator.hasNext()) {
 						cityConnections2 = (Map.Entry<String, Integer>)innerIterator.next();
 						currentCity = cityConnections2.getKey();
-						System.out.print("current city: " + currentCity);
 						
 						if(cities.get(currentCity).containsKey(destination)) {
 							if(visitedCities.contains(currentCity)) {
@@ -69,15 +69,13 @@ public class Connections {
 							visitedCities.add(currentCity);
 							visitedCities.add(destination);
 							distance += cityConnections2.getValue();
-							System.out.print(" + "  + cityConnections2.getValue());
 							distance += 	cities.get(currentCity).get(destination).intValue();
-							System.out.print(" + "  + cities.get(currentCity).get(destination).intValue());
 
 							System.out.println(visitedCities + "distance: " + distance);
 
 							possibleRoutes.add(new ArrayList<String>(visitedCities));
 							//System.out.println(visitedCities);
-							distance -= cityConnections.getValue();
+							distance -= cityConnections2.getValue();
 							distance -= 	cities.get(currentCity).get(destination).intValue();
 							
 							visitedCities.remove(visitedCities.size() - 1);
