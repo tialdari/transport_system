@@ -8,6 +8,8 @@ import java.util.Map.Entry;
 public class Connections {
 	
 	private ArrayList<ArrayList<String>> possibleRoutes = new ArrayList<ArrayList<String>>();
+	private ArrayList<String> visitedCities;
+	
 	
 	public ArrayList<ArrayList<String>> findRoutes(String start, String destination, HashMap<String, HashMap<String, Integer>> cities) {
 		
@@ -17,15 +19,15 @@ public class Connections {
 		Iterator<Entry<String, Integer>> iterator = cities.get(start).entrySet().iterator(); 
 		Map.Entry<String, Integer> cityConnections;
 		
-		ArrayList<String> visitedCities = new ArrayList<String>();
+	 visitedCities = new ArrayList<String>();
 
 		
 		if(cities.get(start).containsKey(destination)) {
-			distance += cities.get(start).get(destination).intValue();
+			distance += 	cities.get(start).get(destination).intValue();
 			visitedCities.add(start);
 			visitedCities.add(destination);
 			possibleRoutes.add(new ArrayList<String>(visitedCities));
-			System.out.println(visitedCities + "distance: " + distance);
+			System.out.println(visitedCities + "   distance: " + distance);
 			return possibleRoutes;
 		}
 		  
@@ -51,7 +53,7 @@ public class Connections {
 					possibleRoutes.add(new ArrayList<String>(visitedCities));
 					System.out.println(visitedCities + "distance: " + distance);
 					distance -= 	cities.get(currentCity).get(destination).intValue();
-					visitedCities.remove(visitedCities.size() - 1);
+					removeCity();					
 				}
 				
 
@@ -78,8 +80,9 @@ public class Connections {
 							distance -= cityConnections2.getValue();
 							distance -= 	cities.get(currentCity).get(destination).intValue();
 							
-							visitedCities.remove(visitedCities.size() - 1);
-							visitedCities.remove(visitedCities.size() - 1);						
+							removeCity();	
+							removeCity();					
+
 						}	
 				  }
 				  
@@ -87,4 +90,15 @@ public class Connections {
 		
 		return possibleRoutes;
 	}
+	
+	public void removeCity() {
+		visitedCities.remove(visitedCities.size() - 1);						
+	}
+	
+	/*
+	public void increaseDistance(String city, String destination) {
+		distance += 	cities.get(city).get(destination).intValue();
+		
+	}
+	*/
 }
