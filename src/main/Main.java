@@ -86,7 +86,7 @@ public class Main {
 			List<Map.Entry<ArrayList<String>, Integer>>list = new ArrayList<>(connections.entrySet());
 			   
 			//sort the results according to their length
-			Collections.sort(list, new EntryComparator());
+			Collections.sort(list, new EntryKeyComparator());
 
 			  
 			System.out.println("\nPossible connections: ");

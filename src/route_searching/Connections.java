@@ -100,12 +100,29 @@ public class Connections {
 	}
 	*/
 	
-		public static class EntryComparator implements Comparator<Map.Entry<ArrayList<String>, Integer>>{
+		public static class EntryKeyComparator implements Comparator<Map.Entry<ArrayList<String>, Integer>>{
 			
 			public int compare(Map.Entry<ArrayList<String>, Integer> left,
 						Map.Entry<ArrayList<String>, Integer> right) {     
 				// Right then left to get a descending order
-				return Integer.compare(left.getKey().size(), right.getKey().size());
+				
+				int difference = Integer.compare(left.getKey().size(), right.getKey().size());
+
+				if(difference != 0) return  difference;
+				else return Integer.compare(left.getValue(), right.getValue());
+			}
+		}
+		
+		public static class EntryValueComparator implements Comparator<Map.Entry<ArrayList<String>, Integer>>{
+			
+			public int compare(Map.Entry<ArrayList<String>, Integer> left,
+						Map.Entry<ArrayList<String>, Integer> right) {     
+				// Right then left to get a descending order
+				
+				int difference = Integer.compare(left.getKey().size(), right.getKey().size());
+
+				if(difference != 0) return  difference;
+				else return Integer.compare(left.getValue(), right.getValue());
 			}
 		}
 }
