@@ -133,7 +133,7 @@ public class Parser {
 				System.out.println("");
 			}
 	        cityConnections = (Map.Entry<String, HashMap<String, Integer>>)iter.next();
-			System.out.print(cityConnections.getKey() + "  ");
+			System.out.print(cityConnections.getKey() + " ");
 
 		}
 	}

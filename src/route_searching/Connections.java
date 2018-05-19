@@ -44,12 +44,9 @@ public class Connections {
 				cityConnections = (Map.Entry<String,Integer>)iterator.next();
 				currentCity = cityConnections.getKey();
 			
-				 visitedCities.add(currentCity);
+				visitedCities.add(currentCity);
 				distance += cityConnections.getValue();
 
-
-
-				
 				if(cities.get(currentCity).containsKey(destination) ) {
 					distance += 	cities.get(currentCity).get(destination).intValue();
 					visitedCities.add(destination);
@@ -104,7 +101,6 @@ public class Connections {
 			
 			public int compare(Map.Entry<ArrayList<String>, Integer> left,
 						Map.Entry<ArrayList<String>, Integer> right) {     
-				// Right then left to get a descending order
 				
 				int difference = Integer.compare(left.getKey().size(), right.getKey().size());
 
@@ -117,12 +113,8 @@ public class Connections {
 			
 			public int compare(Map.Entry<ArrayList<String>, Integer> left,
 						Map.Entry<ArrayList<String>, Integer> right) {     
-				// Right then left to get a descending order
 				
-				int difference = Integer.compare(left.getKey().size(), right.getKey().size());
-
-				if(difference != 0) return  difference;
-				else return Integer.compare(left.getValue(), right.getValue());
+				 return Integer.compare(left.getValue(), right.getValue());
 			}
 		}
 }
