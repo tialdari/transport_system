@@ -4,8 +4,11 @@ import data.Parser;
 
 import java.util.Map.Entry;
 import data.IO;
-import route_searching.Connections;
+import route_searching.Connections.*;
 import java.util.*;
+import route_searching.Connections;
+
+
 
 
 
@@ -22,9 +25,8 @@ public class Main {
 		IO io = new IO();
 		boolean ifContinue = true;
 			
-		
+		//collects the start and destination city from the user
 		while(ifContinue) {
-			//collects the start and destination city from the user
 			System.out.println("\nChoose from: ");
 			parser.print();
 			System.out.println("\n\nStart point(type in the city): ");
@@ -37,9 +39,7 @@ public class Main {
 				
 				startCity += characters[i];
 			}
-			
-			
-			//s1.equalsIgnoreCase(s2)
+						
 				while(!cities.containsKey(startCity)){
 					System.out.println("No such city, please choose a city from the list above");
 					System.out.println("\nStart point(type in the city): ");
@@ -82,27 +82,13 @@ public class Main {
 	
 			//finds possible connections prints them
 			Connections connectionsBrowser = new Connections();
-			
-			    
-				Map<ArrayList<String>, Integer> connections = connectionsBrowser.findRoutes(startCity, destinationCity, cities);
-
-
-			    List<Map.Entry<ArrayList<String>, Integer>>list = new ArrayList<>(connections.entrySet());
-			    Collections.sort(list, new EntryComparator());
-
-			    for (Map.Entry<ArrayList<String>, Integer> entry : list) {
-			      System.out.println(entry.getKey());
-			    }
-			  }
-			
-			/*
 			Map<ArrayList<String>, Integer> connections = connectionsBrowser.findRoutes(startCity, destinationCity, cities);
-			List<Map.Entry<ArrayList<String>, Integer>> list = new ArrayList<>(connections.entrySet());
-			
-			
-			
-			
-			 
+			List<Map.Entry<ArrayList<String>, Integer>>list = new ArrayList<>(connections.entrySet());
+			   
+			//sort the results according to their length
+			Collections.sort(list, new EntryComparator());
+
+			  
 			System.out.println("\nPossible connections: ");
 			  for (Map.Entry<ArrayList<String>, Integer> entry : list) {
 			      System.out.println(entry.getKey() + "\n distance: " + entry.getValue() 
@@ -113,18 +99,12 @@ public class Main {
 			
 			 if(io.input() == "yes") continue;
 			 else break;
-				*/
+		}	
 		
 		
 		System.out.println("End of programme");
 	}
 	
 		
-	 private static class EntryComparator implements Comparator<Map.Entry<ArrayList<String>, Integer>>{
-		   public int compare(Map.Entry<ArrayList<String>, Integer> left,
-		       Map.Entry<ArrayList<String>, Integer> right) {     
-		     // Right then left to get a descending order
-		     return Integer.compare(left.getKey().size(), right.getKey().size());
-		   }
-	 }
+	 
 }
