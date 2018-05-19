@@ -9,9 +9,6 @@ import java.util.*;
 import route_searching.Connections;
 
 
-
-
-
 public class Main {
 	
 	public static void main (String [] args) {
@@ -33,20 +30,26 @@ public class Main {
 			parser.print();
 			System.out.println("\n\nStart point(type in the city): ");
 			String startCity = io.input();
-			char [] characters = startCity.toCharArray();
-			characters[0] = Character.toUpperCase(characters[0]);
-
-			startCity = "";
-			for(int i = 0; i < characters.length; i ++ ) {
-				
-				startCity += characters[i];
-			}
-						
-				while(!cities.containsKey(startCity)){
-					System.out.println("No such city, please choose a city from the list above");
-					System.out.println("\nStart point(type in the city): ");
-					startCity = io.input();
+			
+			char [] characters;
+			while(true) {
+				characters = startCity.toCharArray();
+				characters[0] = Character.toUpperCase(characters[0]);
+	
+				startCity = "";
+				for(int i = 0; i < characters.length; i ++ ) {
+					
+					startCity += characters[i];
 				}
+				
+				System.out.println("start city: " + startCity);
+				
+					if(!cities.containsKey(startCity)){
+						System.out.println("No such city, please choose a city from the list above");
+						System.out.println("\nStart point(type in the city): ");
+						startCity = io.input();
+					}else break;
+			}
 			
 			System.out.println("");
 			
@@ -67,21 +70,23 @@ public class Main {
 			System.out.println("\n\nDestination(type in the city): ");
 			String destinationCity = io.input();
 			
-			 characters = destinationCity.toCharArray();
-			characters[0] = Character.toUpperCase(characters[0]);
-
-			destinationCity = "";
-			for(int i = 0; i < characters.length; i ++ ) {
-				
-				destinationCity += characters[i];
+			while(true) {
+					characters = destinationCity.toCharArray();
+					characters[0] = Character.toUpperCase(characters[0]);
+		
+					destinationCity = "";
+					for(int i = 0; i < characters.length; i ++ ) {
+						
+						destinationCity += characters[i];
+					}
+			
+					if(!cities.containsKey(destinationCity)){
+						System.out.println("No such city, please choose a city from the list above");
+						System.out.println("\nDestination(type in the city): ");
+						destinationCity = io.input();
+					}else break;
 			}
-	
-			while(!cities.containsKey(destinationCity)){
-				System.out.println("No such city, please choose a city from the list above");
-				System.out.println("\nDestination(type in the city): ");
-				destinationCity = io.input();
-			}
-	
+			
 			//finds possible connections prints them
 			Connections connectionsBrowser = new Connections();
 			Map<ArrayList<String>, Integer> connections = connectionsBrowser.findRoutes(startCity, destinationCity, cities);
