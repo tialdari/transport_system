@@ -41,9 +41,7 @@ public class Main {
 					
 					startCity += characters[i];
 				}
-				
-				System.out.println("start city: " + startCity);
-				
+								
 					if(!cities.containsKey(startCity)){
 						System.out.println("No such city, please choose a city from the list above");
 						System.out.println("\nStart point(type in the city): ");
@@ -151,7 +149,7 @@ public class Main {
 		}	
 		
 		
-		System.out.println("End of programme");
+		System.out.println("End of the programme");
 		
 	}
 	
