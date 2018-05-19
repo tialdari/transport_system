@@ -24,7 +24,7 @@ public class Test {
     public int compare(Map.Entry<ArrayList<String>, Integer> left,
         Map.Entry<ArrayList<String>, Integer> right) {     
       // Right then left to get a descending order
-      return Integer.compare(right.getKey().size(), left.getKey().size());
+      return Integer.compare(left.getKey().size(), right.getKey().size());
     }
   }
 }

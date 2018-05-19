@@ -8,14 +8,14 @@ import java.util.Map.Entry;
 public class Connections {
 	
 	private ArrayList<String> visitedCities;
-	private HashMap<ArrayList<String>, Integer> possibleRoutes;
+	private Map<ArrayList<String>, Integer> possibleRoutes;
 	
 	public Connections() {
 		possibleRoutes = new HashMap<ArrayList<String>, Integer>();
 	}
 	
 	
-	public HashMap<ArrayList<String>, Integer> findRoutes(String start, String destination, HashMap<String, HashMap<String, Integer>> cities) {
+	public Map<ArrayList<String>, Integer> findRoutes(String start, String destination, Map<String, HashMap<String, Integer>> cities) {
 		
 		int distance = 0;
 		String currentCity;

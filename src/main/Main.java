@@ -16,7 +16,7 @@ public class Main {
 		//reads data from the text file
 		Parser parser = new Parser("zad4_data.txt");
 		parser.read();
-		HashMap<String, HashMap<String, Integer>> cities = parser.getAllCities();
+		Map<String, HashMap<String, Integer>> cities = parser.getAllCities();
 		
 		System.out.println("Connection browser");
 		IO io = new IO();
@@ -83,8 +83,25 @@ public class Main {
 			//finds possible connections prints them
 			Connections connectionsBrowser = new Connections();
 			
-			HashMap<ArrayList<String>, Integer> connections = connectionsBrowser.findRoutes(startCity, destinationCity, cities);
+			    
+				Map<ArrayList<String>, Integer> connections = connectionsBrowser.findRoutes(startCity, destinationCity, cities);
+
+
+			    List<Map.Entry<ArrayList<String>, Integer>>list = new ArrayList<>(connections.entrySet());
+			    Collections.sort(list, new EntryComparator());
+
+			    for (Map.Entry<ArrayList<String>, Integer> entry : list) {
+			      System.out.println(entry.getKey());
+			    }
+			  }
+			
+			/*
+			Map<ArrayList<String>, Integer> connections = connectionsBrowser.findRoutes(startCity, destinationCity, cities);
 			List<Map.Entry<ArrayList<String>, Integer>> list = new ArrayList<>(connections.entrySet());
+			
+			
+			
+			
 			 
 			System.out.println("\nPossible connections: ");
 			  for (Map.Entry<ArrayList<String>, Integer> entry : list) {
@@ -96,11 +113,18 @@ public class Main {
 			
 			 if(io.input() == "yes") continue;
 			 else break;
-				
-		}
+				*/
+		
 		
 		System.out.println("End of programme");
 	}
 	
-	
+		
+	 private static class EntryComparator implements Comparator<Map.Entry<ArrayList<String>, Integer>>{
+		   public int compare(Map.Entry<ArrayList<String>, Integer> left,
+		       Map.Entry<ArrayList<String>, Integer> right) {     
+		     // Right then left to get a descending order
+		     return Integer.compare(left.getKey().size(), right.getKey().size());
+		   }
+	 }
 }
