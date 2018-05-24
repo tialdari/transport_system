@@ -1,7 +1,8 @@
 package data;
 
-import java.util.Scanner;
+import java.util.Scanner; 
 
+//class which gets the input from a user
 
 public class IO {
 	
